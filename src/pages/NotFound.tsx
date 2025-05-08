@@ -2,15 +2,22 @@
 import React, { useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { toast } from "@/components/ui/sonner";
 
 const NotFound = () => {
   const location = useLocation();
 
   useEffect(() => {
+    // Log error to console
     console.error(
       "404 Error: User attempted to access non-existent route:",
       location.pathname
     );
+    
+    // Show toast notification using Sonner
+    toast.error("Page not found", {
+      description: `The page ${location.pathname} does not exist.`,
+    });
   }, [location.pathname]);
 
   return (
